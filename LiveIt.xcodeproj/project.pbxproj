@@ -8,20 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		52241237215D26A0002F54DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241236215D26A0002F54DF /* AppDelegate.swift */; };
-		52241239215D26A0002F54DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241238215D26A0002F54DF /* ViewController.swift */; };
+		52241239215D26A0002F54DF /* TheRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241238215D26A0002F54DF /* TheRoot.swift */; };
 		5224123C215D26A0002F54DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5224123A215D26A0002F54DF /* Main.storyboard */; };
 		5224123E215D26A2002F54DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5224123D215D26A2002F54DF /* Assets.xcassets */; };
 		52241241215D26A2002F54DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5224123F215D26A2002F54DF /* LaunchScreen.storyboard */; };
+		5224124A215D2C6B002F54DF /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241249215D2C6B002F54DF /* SignupVC.swift */; };
+		5224124D215D2D12002F54DF /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224124C215D2D12002F54DF /* Utils.swift */; };
+		5224124F215D32AD002F54DF /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224124E215D32AD002F54DF /* LoginVC.swift */; };
+		52241252215D39B2002F54DF /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241251215D39B2002F54DF /* FeedVC.swift */; };
+		52241254215D3AF8002F54DF /* IWantToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241253215D3AF8002F54DF /* IWantToVC.swift */; };
+		52241256215D3B1E002F54DF /* MyHobbies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241255215D3B1E002F54DF /* MyHobbies.swift */; };
+		52241258215D3B4E002F54DF /* Awards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52241257215D3B4E002F54DF /* Awards.swift */; };
+		5224125B215D454E002F54DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5224125A215D454E002F54DF /* CoreLocation.framework */; };
+		5224125D215D4800002F54DF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125C215D4800002F54DF /* Service.swift */; };
+		52241260215D49DF002F54DF /* Hobbie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125F215D49DF002F54DF /* Hobbie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		52241233215D26A0002F54DF /* LiveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52241236215D26A0002F54DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52241238215D26A0002F54DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52241238215D26A0002F54DF /* TheRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRoot.swift; sourceTree = "<group>"; };
 		5224123B215D26A0002F54DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5224123D215D26A2002F54DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52241240215D26A2002F54DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52241242215D26A2002F54DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52241249215D2C6B002F54DF /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		5224124C215D2D12002F54DF /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5224124E215D32AD002F54DF /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		52241251215D39B2002F54DF /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		52241253215D3AF8002F54DF /* IWantToVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWantToVC.swift; sourceTree = "<group>"; };
+		52241255215D3B1E002F54DF /* MyHobbies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHobbies.swift; sourceTree = "<group>"; };
+		52241257215D3B4E002F54DF /* Awards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Awards.swift; sourceTree = "<group>"; };
+		5224125A215D454E002F54DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5224125C215D4800002F54DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		5224125F215D49DF002F54DF /* Hobbie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hobbie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5224125B215D454E002F54DF /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +61,7 @@
 			children = (
 				52241235215D26A0002F54DF /* LiveIt */,
 				52241234215D26A0002F54DF /* Products */,
+				52241259215D454E002F54DF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +77,62 @@
 			isa = PBXGroup;
 			children = (
 				52241236215D26A0002F54DF /* AppDelegate.swift */,
-				52241238215D26A0002F54DF /* ViewController.swift */,
+				52241238215D26A0002F54DF /* TheRoot.swift */,
 				5224123A215D26A0002F54DF /* Main.storyboard */,
+				52241250215D3996002F54DF /* Menu Button */,
+				52241248215D2C5B002F54DF /* SignUp */,
+				5224124B215D2D02002F54DF /* Utils */,
+				5224125E215D49BC002F54DF /* Modle */,
 				5224123D215D26A2002F54DF /* Assets.xcassets */,
 				5224123F215D26A2002F54DF /* LaunchScreen.storyboard */,
 				52241242215D26A2002F54DF /* Info.plist */,
 			);
 			path = LiveIt;
+			sourceTree = "<group>";
+		};
+		52241248215D2C5B002F54DF /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				52241249215D2C6B002F54DF /* SignupVC.swift */,
+				5224124E215D32AD002F54DF /* LoginVC.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		5224124B215D2D02002F54DF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5224124C215D2D12002F54DF /* Utils.swift */,
+				5224125C215D4800002F54DF /* Service.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		52241250215D3996002F54DF /* Menu Button */ = {
+			isa = PBXGroup;
+			children = (
+				52241251215D39B2002F54DF /* FeedVC.swift */,
+				52241253215D3AF8002F54DF /* IWantToVC.swift */,
+				52241255215D3B1E002F54DF /* MyHobbies.swift */,
+				52241257215D3B4E002F54DF /* Awards.swift */,
+			);
+			path = "Menu Button";
+			sourceTree = "<group>";
+		};
+		52241259215D454E002F54DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5224125A215D454E002F54DF /* CoreLocation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5224125E215D49BC002F54DF /* Modle */ = {
+			isa = PBXGroup;
+			children = (
+				5224125F215D49DF002F54DF /* Hobbie.swift */,
+			);
+			path = Modle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,8 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52241239215D26A0002F54DF /* ViewController.swift in Sources */,
+				52241260215D49DF002F54DF /* Hobbie.swift in Sources */,
+				52241252215D39B2002F54DF /* FeedVC.swift in Sources */,
+				52241258215D3B4E002F54DF /* Awards.swift in Sources */,
+				5224124A215D2C6B002F54DF /* SignupVC.swift in Sources */,
+				52241239215D26A0002F54DF /* TheRoot.swift in Sources */,
 				52241237215D26A0002F54DF /* AppDelegate.swift in Sources */,
+				52241256215D3B1E002F54DF /* MyHobbies.swift in Sources */,
+				5224124D215D2D12002F54DF /* Utils.swift in Sources */,
+				5224125D215D4800002F54DF /* Service.swift in Sources */,
+				52241254215D3AF8002F54DF /* IWantToVC.swift in Sources */,
+				5224124F215D32AD002F54DF /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
