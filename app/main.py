@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restplus import Resource, Api
+from flask_restplus import Resource, Api, fields
 from flask_pymongo import PyMongo
 from bson import json_util
 from datetime import datetime
@@ -13,6 +13,28 @@ app.config["MONGO_URI"] = "mongodb://mongo:27017/my-database"
 mongo = PyMongo(app)
 
 
+user_fields = api.model('Resource', {
+    'name': fields.String,
+    'email': fields.String,
+    'password': fields.String
+})
+
+user_habits_fields =  api.model('Resource', {
+   "name":  fields.String,
+   "difficulty": fields.int,
+   "goal": fields.String(description="the target for the user, eg. '40'"),
+   "unit": field.String(description="unit of measurement for the goal, eg. 'Kilos'")
+})
+
+user_post_fields =  api.model('Resource', {
+	"text": fields.String,
+    "habit": fields.String(description="the name of the habit that goes with this post")
+})
+
+post_endorsement_fields =  api.model('Resource', {
+    "user_id": field.String(description='the user_id of the user who is liking the post')
+}
+
 def create_id():
     return str(uuid.uuid4())
 
@@ -21,6 +43,7 @@ class User(Resource):
         user = mongo.db.users.find_one({"id": user_id})
         return json.loads(json_util.dumps(user))
 
+    @api.expect(user_fields)
     def post(self):
         json = request.get_json()
         user = mongo.db.users.find_one({"email": json["email"]})
@@ -49,6 +72,7 @@ class UserHabits(Resource):
 
         return json.loads(json_util.dumps(user['habits']))
 
+    @api.expect(user_habit_fields)
     def post(self, user_id):
         json = request.get_json()
 
@@ -92,6 +116,7 @@ class UserPosts(Resource):
 
         return json.loads(json_util.dumps(user['posts']))
 
+    @api.expect(user_post_fields)
     def post(self, user_id):
         json = request.get_json()
 
