@@ -39,10 +39,12 @@ def create_id():
     return str(uuid.uuid4())
 
 class User(Resource):
+    @api.doc(description="Gets details about a user")
     def get(self, user_id):
         user = mongo.db.users.find_one({"id": user_id})
         return json.loads(json_util.dumps(user))
 
+    @api.doc(description="Creates a new user (use the /user endpoint, not the /user/user_id endpoint)")
     @api.expect(user_fields)
     def post(self):
         json = request.get_json()
@@ -65,6 +67,8 @@ class User(Resource):
 
     
 class UserHabits(Resource):
+
+    @api.doc(description="Gets habits of a user")
     def get(self, user_id):
         user = mongo.db.users.find_one({"id": user_id})
         if user is None:
@@ -72,6 +76,7 @@ class UserHabits(Resource):
 
         return json.loads(json_util.dumps(user['habits']))
 
+    @api.doc(description="Creates a new habit for a user")
     @api.expect(user_habits_fields)
     def post(self, user_id):
         json = request.get_json()
@@ -95,6 +100,7 @@ class UserHabits(Resource):
                                                   {"$set": {"habits": habits}})
         return "success"
 
+    @api.doc(description="Deletes a habbit from a user")
     def delete(self, user_id, habit_id):
          # Get user from DB
         user = mongo.db.users.find_one({"id": user_id})
@@ -109,6 +115,7 @@ class UserHabits(Resource):
         return "success"
 
 class UserPosts(Resource):
+    @api.doc(description="Gets posts of a user")
     def get(self, user_id):
         user = mongo.db.users.find_one({"id": user_id})
         if user is None:
@@ -116,6 +123,7 @@ class UserPosts(Resource):
 
         return json.loads(json_util.dumps(user['posts']))
 
+    @api.doc(description="Creates a new post for a user")
     @api.expect(user_post_fields)
     def post(self, user_id):
         json = request.get_json()
@@ -139,6 +147,7 @@ class UserPosts(Resource):
                                                   {"$set": {"posts": posts}})
         return "success"
 
+    @api.doc(description="Deletes post for a user")
     def delete(self, user_id, post_id):
          # Get user from DB
         user = mongo.db.users.find_one({"id": user_id})
@@ -154,6 +163,7 @@ class UserPosts(Resource):
 
 
 class PostEndorsement(Resource):
+    @api.doc(description="Endorse a user's post")
     def post(self, user_id, post_id):
         json = request.get_json()
         endorse_id = json['user_id']
@@ -175,7 +185,7 @@ class PostEndorsement(Resource):
                                                   {"$set": {"posts": posts}})
         return "Success"
 
-
+    @api.doc(description="Deletes a user's post")
     def delete(self, user_id, post_id):
         json = request.get_json()
         endorse_id = json['user_id']
