@@ -113,7 +113,7 @@ class UserHabits(Resource):
         habits = user["habits"]
 
         tags = json.get("tags", [])
-                
+
         for uid in tags:
             if not mongo.db.users.find_one({"id": uid}):
                 return {"error": f"user_id in tags '{uid}' does not exist"}
@@ -251,7 +251,9 @@ class UserFeed(Resource):
 
         posts = []
         for user in mongo.db.users.find():
-            posts.extend(user['posts'])
+            for post in user["posts"]:
+                post['user_id'] = user['id']
+            posts.extend(user["posts"])
 
         posts = sorted(posts, key=lambda post: post['date'], reverse=True)
         return json.loads(json_util.dumps(posts))
