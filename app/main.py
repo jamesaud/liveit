@@ -26,7 +26,8 @@ user_habits_fields =  api.model('Resource2', {
    "name":  fields.String,
    "difficulty": fields.Integer(min=1, max=10),
    "goal": fields.String(description="the target for the user, eg. '40'"),
-   "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'")
+   "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'"),
+   "tags": fields.List(fields.String, description="list of user ids to tag", required=False)
 })
 
 user_post_fields =  api.model('Resource3', {
@@ -69,7 +70,7 @@ class User(Resource):
         return json.loads(json_util.dumps(user))
 
     @api.doc(description="Creates a new user (use the /user endpoint, not the /user/user_id endpoint)")
-    @api.expect(user_fields)
+    @api.expect(user_fields, validate=True)
     def post(self):
         json = request.get_json()
         user = mongo.db.users.find_one({"email": json["email"]})
@@ -103,7 +104,7 @@ class UserHabits(Resource):
         return json.loads(json_util.dumps(user['habits']))
 
     @api.doc(description="Creates a new habit for a user")
-    @api.expect(user_habits_fields)
+    @api.expect(user_habits_fields, validate=True)
     def post(self, user_id):
         json = request.get_json()
 
@@ -111,6 +112,13 @@ class UserHabits(Resource):
         user = mongo.db.users.find_one({"id": user_id})
         habits = user["habits"]
 
+        tags = json.get("tags", [])
+                
+        for uid in tags:
+            if not mongo.db.users.find_one({"id": uid}):
+                return {"error": f"user_id in tags '{uid}' does not exist"}
+        
+            
         # Save new Habit
         new_habit = {
             "id": create_id(),
@@ -118,7 +126,8 @@ class UserHabits(Resource):
             "difficulty": json["difficulty"],
             "goal": json["goal"],
             "unit": json["unit"],
-            "date": datetime.utcnow()
+            "date": datetime.utcnow(),
+            "tags": tags
         }
         
         habits.append(new_habit)
@@ -150,7 +159,7 @@ class UserPosts(Resource):
         return json.loads(json_util.dumps(user['posts']))
 
     @api.doc(description="Creates a new post for a user")
-    @api.expect(user_post_fields)
+    @api.expect(user_post_fields, validate=True)
     def post(self, user_id):
         json = request.get_json()
 
@@ -257,7 +266,7 @@ class Awards(Resource):
         return json.loads(json_util.dumps(user['awards']))
 
     @api.doc(description="Creates a new award for a user")
-    @api.expect(awards_fields)
+    @api.expect(awards_fields, validate=True)
     def post(self, user_id):
         json = request.get_json()
 
