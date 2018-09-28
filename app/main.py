@@ -13,26 +13,32 @@ app.config["MONGO_URI"] = "mongodb://mongo:27017/my-database"
 mongo = PyMongo(app)
 
 
-user_fields = api.model('Resource', {
+user_fields = api.model('Resource1', {
     'name': fields.String,
     'email': fields.String,
     'password': fields.String
 })
 
-user_habits_fields =  api.model('Resource', {
+user_habits_fields =  api.model('Resource2', {
    "name":  fields.String,
    "difficulty": fields.Integer(min=1, max=10),
    "goal": fields.String(description="the target for the user, eg. '40'"),
    "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'")
 })
 
-user_post_fields =  api.model('Resource', {
+user_post_fields =  api.model('Resource3', {
 	"text": fields.String,
     "habit": fields.String(description="the name of the habit that goes with this post")
 })
 
-post_endorsement_fields =  api.model('Resource', {
+post_endorsement_fields =  api.model('Resource4', {
     "user_id": fields.String(description='the user_id of the user who is liking the post')
+})
+
+awards_fields = api.model('Resource5', {
+    "name": fields.String,
+    "points": fields.Integer,
+    "habit": fields.String,
 })
 
 def create_id():
@@ -60,7 +66,8 @@ class User(Resource):
              "password": json["password"],
              "id": user_id,
              "habits": [],
-             "posts": []
+             "posts": [],
+             "awards": []
         }
         _user = mongo.db.users.insert_one(user)
         return {"user_id": user["id"]}
@@ -98,7 +105,7 @@ class UserHabits(Resource):
         habits.append(new_habit)
         res = mongo.db.users.find_one_and_update({"id": user_id}, 
                                                   {"$set": {"habits": habits}})
-        return "success"
+        return {"habit_id": new_habit['id']}
 
     @api.doc(description="Deletes a habbit from a user")
     def delete(self, user_id, habit_id):
@@ -145,7 +152,7 @@ class UserPosts(Resource):
         posts.append(new_post)
         res = mongo.db.users.find_one_and_update({"id": user_id}, 
                                                   {"$set": {"posts": posts}})
-        return "success"
+        return {'post_id': new_post['id']}
 
     @api.doc(description="Deletes post for a user")
     def delete(self, user_id, post_id):
@@ -203,10 +210,78 @@ class PostEndorsement(Resource):
                                                   {"$set": {"posts": posts}})
         return "Success"
 
+class Users(Resource):
+    @api.doc(description="For testing. Gets all users")
+    def get(self):
+        return json.loads(json_util.dumps(list(mongo.db.users.find())))
+
+
+class UserFeed(Resource):
+    @api.doc(description="Gets the feed for a user: returns a list of posts ordered by most recent")
+    def get(self, user_id):
+        user = mongo.db.users.find_one({"id": user_id})
+
+        posts = []
+        for user in mongo.db.users.find():
+            posts.extend(user['posts'])
+
+        posts = sorted(posts, key=lambda post: post['date'], reverse=True)
+        return json.loads(json_util.dumps(posts))
+
+class Awards(Resource):
+    @api.doc(description="Gets awards for a user")
+    def get(self, user_id):
+        user = mongo.db.users.find_one({"id": user_id})
+        if user is None:
+            return {"error": "user does not exist with ID"}, 400
+
+        return json.loads(json_util.dumps(user['awards']))
+
+    @api.doc(description="Creates a new award for a user")
+    @api.expect(awards_fields)
+    def post(self, user_id):
+        json = request.get_json()
+
+        # Get user from DB
+        user = mongo.db.users.find_one({"id": user_id})
+        awards = user["awards"]
+
+        
+        # Save new Post
+        new_award = {
+            "id": create_id(),
+            "name": json["name"],
+            "points": json["points"],
+            "habit": json["habit"],           
+            "date": datetime.utcnow()
+        }
+        
+        awards.append(new_award)
+        res = mongo.db.users.find_one_and_update({"id": user_id}, 
+                                                  {"$set": {"awards": awards}})
+        return {'award_id': new_award['id']}
+
+    @api.doc(description="Deletes award for a user")
+    def delete(self, user_id, award_id):
+         # Get user from DB
+        user = mongo.db.users.find_one({"id": user_id})
+        awards = user["awards"]
+        index = [award["id"] for award in awards].index(award_id)
+        del awards[index]
+
+        res = mongo.db.users.find_one_and_update({"id": user_id}, 
+                                                  {"$set": {"awards": awards}})
+
+        return "success" 
+
+
 api.add_resource(User, '/user/<string:user_id>', '/user')
+api.add_resource(Users, '/users')
 api.add_resource(UserHabits, '/user/<string:user_id>/habits', '/user/<string:user_id>/habits/<string:habit_id>')
 api.add_resource(UserPosts, '/user/<string:user_id>/posts', '/user/<string:user_id>/posts/<string:post_id>')
 api.add_resource(PostEndorsement, '/user/<string:user_id>/posts/<string:post_id>/endorse')
+api.add_resource(UserFeed, '/user/<string:user_id>/feed')
+api.add_resource(Awards, '/user/<string:user_id>/awards', '/user/<string:user_id>/awards/<string:award_id>')
 
 
 if __name__ == "__main__":
