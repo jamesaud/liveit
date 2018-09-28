@@ -36,8 +36,13 @@ user_post_fields =  api.model('Post', {
 })
 
 post_endorsement_fields =  api.model('Endorsement', {
-    "user_id": fields.String(description='the user_id of the user who is liking the post', required=True)
+    "user_id": fields.String(description='the user_id of the user who is endorsing the post', required=True)
 }) 
+
+post_dislike_fields =  api.model('Dislike', {
+    "user_id": fields.String(description='the user_id of the user who is disliking the post', required=True)
+}) 
+
 
 awards_fields = api.model('Award', {
     "name": fields.String(required=True),
@@ -174,6 +179,7 @@ class UserPosts(Resource):
             "text": json["text"],
             "habit": json["habit"],
             "endorsements": [],              # List user_ids
+            "dislikes": [],                  # List user_ids
             "date": datetime.utcnow()
         }
         
@@ -199,9 +205,11 @@ class UserPosts(Resource):
 
 class PostEndorsement(Resource):
     @api.doc(description="Endorse a user's post")
+    @api.expect(post_endorsement_fields, validate=True)
     def post(self, user_id, post_id):
         json = request.get_json()
         endorse_id = json['user_id']
+
         # Get post from DB
         user = mongo.db.users.find_one({"id": user_id})
         posts = user["posts"]
@@ -224,6 +232,7 @@ class PostEndorsement(Resource):
     def delete(self, user_id, post_id):
         json = request.get_json()
         endorse_id = json['user_id']
+
         # Get post from DB
         user = mongo.db.users.find_one({"id": user_id})
         posts = user["posts"]
@@ -233,6 +242,53 @@ class PostEndorsement(Resource):
         # Add endorsement
         endorsements = post["endorsements"]
         endorsements.remove(endorse_id)
+       
+        res = mongo.db.users.find_one_and_update({"id": user_id}, 
+                                                  {"$set": {"posts": posts}})
+        return "Success"
+
+
+class PostDislike(Resource):
+    @api.doc(description="Dislike a user's post")
+    @api.expect(post_dislike_fields, validate=True)
+    def post(self, user_id, post_id):
+        json = request.get_json()
+        dislike_id = json['user_id']
+        mongo.db.users.find_one_or_404({"id": dislike_id})
+
+        # Get post from DB
+        user = mongo.db.users.find_one({"id": user_id})
+        posts = user["posts"]
+        index = [post["id"] for post in posts].index(post_id)
+        post = posts[index]
+
+        # Add endorsement
+        dislikes = post["dislikes"]
+
+        if endorse_id in dislikes:
+            return {"error": "Already disliked"}, 400
+
+        dislikes.append(json['user_id'])
+
+        res = mongo.db.users.find_one_and_update({"id": user_id}, 
+                                                  {"$set": {"posts": posts}})
+        return "Success"
+
+    @api.doc(description="Deletes a user's post")
+    @api.expect(post_dislike_fields, validate=True)
+    def delete(self, user_id, post_id):
+        json = request.get_json()
+        dislike_id = json['user_id']
+
+        # Get post from DB
+        user = mongo.db.users.find_one({"id": user_id})
+        posts = user["posts"]
+        index = [post["id"] for post in posts].index(post_id)
+        post = posts[index]
+
+        # Add dislikes
+        dislikes = post["dislikes"]
+        dislikes.remove(dislike_id)
        
         res = mongo.db.users.find_one_and_update({"id": user_id}, 
                                                   {"$set": {"posts": posts}})
@@ -310,6 +366,8 @@ api.add_resource(Users, '/users')
 api.add_resource(UserHabits, '/user/<string:user_id>/habits', '/user/<string:user_id>/habits/<string:habit_id>')
 api.add_resource(UserPosts, '/user/<string:user_id>/posts', '/user/<string:user_id>/posts/<string:post_id>')
 api.add_resource(PostEndorsement, '/user/<string:user_id>/posts/<string:post_id>/endorse')
+api.add_resource(PostDislike, '/user/<string:user_id>/posts/<string:post_id>/dislike')
+
 api.add_resource(UserFeed, '/user/<string:user_id>/feed')
 api.add_resource(Awards, '/user/<string:user_id>/awards', '/user/<string:user_id>/awards/<string:award_id>')
 
