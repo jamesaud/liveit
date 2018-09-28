@@ -16,33 +16,33 @@ mongo = PyMongo(app)
 import os 
 images = json.loads(open("data/inital_images.json").read())
 
-user_fields = api.model('Resource1', {
-    'name': fields.String,
-    'email': fields.String,
-    'password': fields.String
+user_fields = api.model('User', {
+    'name': fields.String(required=True),
+    'email': fields.String(required=True),
+    'password': fields.String(required=True)
 })
 
-user_habits_fields =  api.model('Resource2', {
-   "name":  fields.String,
-   "difficulty": fields.Integer(min=1, max=10),
-   "goal": fields.String(description="the target for the user, eg. '40'"),
-   "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'"),
+user_habits_fields =  api.model('Habit', {
+   "name":  fields.String(required=True),
+   "difficulty": fields.Integer(min=1, max=10, required=True),
+   "goal": fields.String(description="the target for the user, eg. '40'", required=True),
+   "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'", required=True),
    "tags": fields.List(fields.String, description="list of user ids to tag", required=False)
 })
 
-user_post_fields =  api.model('Resource3', {
-	"text": fields.String,
-    "habit": fields.String(description="the name of the habit that goes with this post")
+user_post_fields =  api.model('Post', {
+	"text": fields.String(required=True),
+    "habit": fields.String(description="the name of the habit that goes with this post", required=True)
 })
 
-post_endorsement_fields =  api.model('Resource4', {
-    "user_id": fields.String(description='the user_id of the user who is liking the post')
+post_endorsement_fields =  api.model('Endorsement', {
+    "user_id": fields.String(description='the user_id of the user who is liking the post', required=True)
 }) 
 
-awards_fields = api.model('Resource5', {
-    "name": fields.String,
-    "points": fields.Integer,
-    "habit": fields.String,
+awards_fields = api.model('Award', {
+    "name": fields.String(required=True),
+    "points": fields.Integer(required=True),
+    "habit": fields.String(required=True),
 })
 
 def create_id():
