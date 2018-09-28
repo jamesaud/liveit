@@ -12,6 +12,9 @@ api = Api(app)
 app.config["MONGO_URI"] = "mongodb://mongo:27017/my-database"
 mongo = PyMongo(app)
 
+# Images
+import os 
+images = json.loads(open("data/inital_images.json").read())
 
 user_fields = api.model('Resource1', {
     'name': fields.String,
@@ -33,7 +36,7 @@ user_post_fields =  api.model('Resource3', {
 
 post_endorsement_fields =  api.model('Resource4', {
     "user_id": fields.String(description='the user_id of the user who is liking the post')
-})
+}) 
 
 awards_fields = api.model('Resource5', {
     "name": fields.String,
@@ -43,6 +46,21 @@ awards_fields = api.model('Resource5', {
 
 def create_id():
     return str(uuid.uuid4())
+
+def generate_img():
+    img_count = mongo.db.counts.find_one({"name": "image_count"})
+    if img_count is None:
+        mongo.db.counts.insert_one({
+            "name": "image_count",
+            "count": 0
+            })
+        img_count = mongo.db.counts.find_one({"name": "image_count"})
+
+    index = img_count["count"] % (len(images) - 1)
+    new_count = img_count["count"] + 1
+    res = mongo.db.counts.find_one_and_update({"name": "image_count"}, 
+                                                  {"$set": {"count": new_count}})
+    return images[index]
 
 class User(Resource):
     @api.doc(description="Gets details about a user")
@@ -65,6 +83,7 @@ class User(Resource):
              "email": json["email"],
              "password": json["password"],
              "id": user_id,
+             "image": generate_img(),
              "habits": [],
              "posts": [],
              "awards": []
