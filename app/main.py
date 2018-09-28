@@ -21,9 +21,9 @@ user_fields = api.model('Resource', {
 
 user_habits_fields =  api.model('Resource', {
    "name":  fields.String,
-   "difficulty": fields.int,
+   "difficulty": fields.Integer(min=1, max=10),
    "goal": fields.String(description="the target for the user, eg. '40'"),
-   "unit": field.String(description="unit of measurement for the goal, eg. 'Kilos'")
+   "unit": fields.String(description="unit of measurement for the goal, eg. 'Kilos'")
 })
 
 user_post_fields =  api.model('Resource', {
@@ -32,8 +32,8 @@ user_post_fields =  api.model('Resource', {
 })
 
 post_endorsement_fields =  api.model('Resource', {
-    "user_id": field.String(description='the user_id of the user who is liking the post')
-}
+    "user_id": fields.String(description='the user_id of the user who is liking the post')
+})
 
 def create_id():
     return str(uuid.uuid4())
@@ -72,7 +72,7 @@ class UserHabits(Resource):
 
         return json.loads(json_util.dumps(user['habits']))
 
-    @api.expect(user_habit_fields)
+    @api.expect(user_habits_fields)
     def post(self, user_id):
         json = request.get_json()
 
@@ -85,8 +85,8 @@ class UserHabits(Resource):
             "id": create_id(),
             "name": json["name"],
             "difficulty": json["difficulty"],
-            "goal": int(json["goal"]),
-            "unit": "weeks",
+            "goal": json["goal"],
+            "unit": json["unit"],
             "date": datetime.utcnow()
         }
         
