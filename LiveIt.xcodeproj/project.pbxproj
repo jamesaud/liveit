@@ -22,6 +22,17 @@
 		5224125B215D454E002F54DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5224125A215D454E002F54DF /* CoreLocation.framework */; };
 		5224125D215D4800002F54DF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125C215D4800002F54DF /* Service.swift */; };
 		52241260215D49DF002F54DF /* Hobbie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125F215D49DF002F54DF /* Hobbie.swift */; };
+		5263597C215E00A50092F818 /* TheRootBarButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263597B215E00A50092F818 /* TheRootBarButtonController.swift */; };
+		5263597E215E07E00092F818 /* NewOneIWantToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263597D215E07E00092F818 /* NewOneIWantToVC.swift */; };
+		52635981215E084B0092F818 /* NewOneFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635980215E084B0092F818 /* NewOneFeed.swift */; };
+		52635983215E08CF0092F818 /* NewOneMyHobbies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635982215E08CF0092F818 /* NewOneMyHobbies.swift */; };
+		52635985215E09070092F818 /* NewOneAwards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635984215E09070092F818 /* NewOneAwards.swift */; };
+		52635987215E10D40092F818 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635986215E10D40092F818 /* User.swift */; };
+		5263598A215E35E80092F818 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635989215E35E80092F818 /* CustomCollectionViewCell.swift */; };
+		5263598E215E4C9E0092F818 /* PostSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263598D215E4C9E0092F818 /* PostSetting.swift */; };
+		52635990215E4CED0092F818 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263598F215E4CED0092F818 /* Settings.swift */; };
+		52DDA782215EA50C0025C156 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DDA781215EA50C0025C156 /* CustomImageView.swift */; };
+		E6399387E885024505F0201C /* Pods_LiveIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC3D6A41AC598F36BC5C2F59 /* Pods_LiveIt.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +53,19 @@
 		5224125A215D454E002F54DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5224125C215D4800002F54DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		5224125F215D49DF002F54DF /* Hobbie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hobbie.swift; sourceTree = "<group>"; };
+		5263597B215E00A50092F818 /* TheRootBarButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRootBarButtonController.swift; sourceTree = "<group>"; };
+		5263597D215E07E00092F818 /* NewOneIWantToVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneIWantToVC.swift; sourceTree = "<group>"; };
+		52635980215E084B0092F818 /* NewOneFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneFeed.swift; sourceTree = "<group>"; };
+		52635982215E08CF0092F818 /* NewOneMyHobbies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneMyHobbies.swift; sourceTree = "<group>"; };
+		52635984215E09070092F818 /* NewOneAwards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneAwards.swift; sourceTree = "<group>"; };
+		52635986215E10D40092F818 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		52635989215E35E80092F818 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		5263598D215E4C9E0092F818 /* PostSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSetting.swift; sourceTree = "<group>"; };
+		5263598F215E4CED0092F818 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		52DDA781215EA50C0025C156 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = ../../../Instgram_Firebase/Instgram_Firebase/Utls/CustomImageView.swift; sourceTree = "<group>"; };
+		AC3D6A41AC598F36BC5C2F59 /* Pods_LiveIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB206BCDD7BCE89FE318AEFF /* Pods-LiveIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveIt/Pods-LiveIt.debug.xcconfig"; sourceTree = "<group>"; };
+		D5742EBBF05A1EB99F11CBC3 /* Pods-LiveIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveIt/Pods-LiveIt.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5224125B215D454E002F54DF /* CoreLocation.framework in Frameworks */,
+				E6399387E885024505F0201C /* Pods_LiveIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +87,7 @@
 				52241235215D26A0002F54DF /* LiveIt */,
 				52241234215D26A0002F54DF /* Products */,
 				52241259215D454E002F54DF /* Frameworks */,
+				B8B5CF7E0C05C9E380DD2365 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +102,9 @@
 		52241235215D26A0002F54DF /* LiveIt */ = {
 			isa = PBXGroup;
 			children = (
+				5263598B215E4C860092F818 /* NetWorking */,
+				52635988215E35D40092F818 /* Views */,
+				5263597F215E08230092F818 /* New Group */,
 				52241236215D26A0002F54DF /* AppDelegate.swift */,
 				52241238215D26A0002F54DF /* TheRoot.swift */,
 				5224123A215D26A0002F54DF /* Main.storyboard */,
@@ -86,6 +115,7 @@
 				5224123D215D26A2002F54DF /* Assets.xcassets */,
 				5224123F215D26A2002F54DF /* LaunchScreen.storyboard */,
 				52241242215D26A2002F54DF /* Info.plist */,
+				5263597B215E00A50092F818 /* TheRootBarButtonController.swift */,
 			);
 			path = LiveIt;
 			sourceTree = "<group>";
@@ -102,6 +132,7 @@
 		5224124B215D2D02002F54DF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				52DDA781215EA50C0025C156 /* CustomImageView.swift */,
 				5224124C215D2D12002F54DF /* Utils.swift */,
 				5224125C215D4800002F54DF /* Service.swift */,
 			);
@@ -123,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				5224125A215D454E002F54DF /* CoreLocation.framework */,
+				AC3D6A41AC598F36BC5C2F59 /* Pods_LiveIt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,8 +163,46 @@
 			isa = PBXGroup;
 			children = (
 				5224125F215D49DF002F54DF /* Hobbie.swift */,
+				52635986215E10D40092F818 /* User.swift */,
 			);
 			path = Modle;
+			sourceTree = "<group>";
+		};
+		5263597F215E08230092F818 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				5263597D215E07E00092F818 /* NewOneIWantToVC.swift */,
+				52635980215E084B0092F818 /* NewOneFeed.swift */,
+				52635982215E08CF0092F818 /* NewOneMyHobbies.swift */,
+				52635984215E09070092F818 /* NewOneAwards.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		52635988215E35D40092F818 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				52635989215E35E80092F818 /* CustomCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5263598B215E4C860092F818 /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				5263598D215E4C9E0092F818 /* PostSetting.swift */,
+				5263598F215E4CED0092F818 /* Settings.swift */,
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
+		B8B5CF7E0C05C9E380DD2365 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CB206BCDD7BCE89FE318AEFF /* Pods-LiveIt.debug.xcconfig */,
+				D5742EBBF05A1EB99F11CBC3 /* Pods-LiveIt.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +212,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52241245215D26A2002F54DF /* Build configuration list for PBXNativeTarget "LiveIt" */;
 			buildPhases = (
+				D902565E2D8578D851562D78 /* [CP] Check Pods Manifest.lock */,
 				5224122F215D26A0002F54DF /* Sources */,
 				52241230215D26A0002F54DF /* Frameworks */,
 				52241231215D26A0002F54DF /* Resources */,
+				FE4C7363BEF06C654F37A886 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,20 +273,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D902565E2D8578D851562D78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiveIt-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE4C7363BEF06C654F37A886 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LiveIt/Pods-LiveIt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveIt/Pods-LiveIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5224122F215D26A0002F54DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				52241260215D49DF002F54DF /* Hobbie.swift in Sources */,
+				5263598A215E35E80092F818 /* CustomCollectionViewCell.swift in Sources */,
 				52241252215D39B2002F54DF /* FeedVC.swift in Sources */,
+				5263597C215E00A50092F818 /* TheRootBarButtonController.swift in Sources */,
 				52241258215D3B4E002F54DF /* Awards.swift in Sources */,
 				5224124A215D2C6B002F54DF /* SignupVC.swift in Sources */,
 				52241239215D26A0002F54DF /* TheRoot.swift in Sources */,
 				52241237215D26A0002F54DF /* AppDelegate.swift in Sources */,
+				52635987215E10D40092F818 /* User.swift in Sources */,
 				52241256215D3B1E002F54DF /* MyHobbies.swift in Sources */,
+				52DDA782215EA50C0025C156 /* CustomImageView.swift in Sources */,
+				52635981215E084B0092F818 /* NewOneFeed.swift in Sources */,
 				5224124D215D2D12002F54DF /* Utils.swift in Sources */,
+				52635983215E08CF0092F818 /* NewOneMyHobbies.swift in Sources */,
+				52635985215E09070092F818 /* NewOneAwards.swift in Sources */,
+				52635990215E4CED0092F818 /* Settings.swift in Sources */,
 				5224125D215D4800002F54DF /* Service.swift in Sources */,
+				5263597E215E07E00092F818 /* NewOneIWantToVC.swift in Sources */,
+				5263598E215E4C9E0092F818 /* PostSetting.swift in Sources */,
 				52241254215D3AF8002F54DF /* IWantToVC.swift in Sources */,
 				5224124F215D32AD002F54DF /* LoginVC.swift in Sources */,
 			);
@@ -358,6 +479,7 @@
 		};
 		52241246215D26A2002F54DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB206BCDD7BCE89FE318AEFF /* Pods-LiveIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -376,6 +498,7 @@
 		};
 		52241247215D26A2002F54DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5742EBBF05A1EB99F11CBC3 /* Pods-LiveIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

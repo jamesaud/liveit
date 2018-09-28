@@ -46,7 +46,7 @@ class TheRoot: UICollectionViewController,UICollectionViewDelegateFlowLayout {
             feedVC.theRoot = self
             navigationController?.pushViewController(feedVC, animated: true)
         }else if indexPath.row == 1 {
-            // I Want to..
+             // I Want to..
             let iWantToVC = IWantToVC()
             navigationController?.pushViewController(iWantToVC, animated: true)
         }else if indexPath.row == 2 {
@@ -54,7 +54,7 @@ class TheRoot: UICollectionViewController,UICollectionViewDelegateFlowLayout {
             let myHobbies = MyHobbies()
             navigationController?.pushViewController(myHobbies, animated: true)
         }else if indexPath.row == 3 {
-            // A Awards
+            // // My Hobbies,A Awards
             let awards = Awards()
             navigationController?.pushViewController(awards, animated: true)
         }

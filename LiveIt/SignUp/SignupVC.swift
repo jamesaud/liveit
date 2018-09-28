@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class SignupVC: UIViewController {
+    var theRootTBVC:TheRootBarButtonController?
+    var user: User?
     let email: UITextField = {
        let tf = UITextField()
         tf.placeholder = "Example@gmail.com"
@@ -47,6 +50,7 @@ class SignupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+//        setupURLRequest()
         setupViews()
     }
     func setupViews() {
@@ -74,7 +78,113 @@ class SignupVC: UIViewController {
         guard let emailString = email.text, !emailString.isEmpty else { return}
         guard let userNameString = userName.text, !userNameString.isEmpty else { return }
         guard let passwordString = passward.text, !passwordString.isEmpty else { return }
+        if let location = theRootTBVC?.locationMangere.location {
+            let lat = location.coordinate.latitude
+            let lng = location.coordinate.longitude
+            let location = [lat,lng]
+            
+            let dict = ["name":userNameString, "email": emailString,"password":passwordString,"location":location] as [String : Any]
+            setupURLRequest(dict: dict)
+        }else {
+            let dict = ["name":userNameString, "email": emailString,"password":passwordString,"location":[0.0,0.0]] as [String : Any]
+            setupURLRequest(dict: dict)
+        }
+        
         print(emailString,passwordString,userNameString)
+        
         print("hanldeSignUp")
+        
+        
+        
+    }
+    func setupURLRequest (dict:[String:Any]) {
+        Alamofire.request("http://178.128.158.129/user", method: .post, parameters: dict, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+            switch response.result {
+            case .failure(let err):
+                print(err)
+            case .success(let value):
+                guard let va = value as? [String:Any] else { return }
+                self.self.user = User(name: dict["name"] as! String, email: dict["email"] as! String, id: va["user_id"] as! String, location: dict["location"] as! [Double],imageURL:"f")
+                UserDefaults.standard.set(va["user_id"], forKey: "USERID")
+                print(self.user)
+                self.dismiss(animated: true, completion: nil)
+                print(value)
+            }
+        }
+//        let jsonData = try! JSONSerialization.data(withJSONObject: dict)
+//        let convertedString = String(data: jsonData, encoding:String.Encoding.utf8)
+//
+//        print(convertedString)
+//
+//        // create post request
+//        let url = URL(string: "http://178.128.158.129/user")!
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        // insert json data to the request
+//        request.httpBody = jsonData
+//
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let data = data, error == nil else {
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+//            print(response)
+//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//            if let responseJSON = responseJSON as? [String: Any] {
+//                print(responseJSON)
+//            }
+//        }
+//
+//        task.resume()
+
+        
+//
+//        let jsonData = try? JSONSerialization.data(withJSONObject: dict)
+//        let json = try! JSONSerialization.jsonObject(with: jsonData!, options: .allowFragments)
+//        let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue)
+//        print(jsonString)
+//
+//
+//        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//
+//        request.httpMethod = "POST"
+////        let postString = "id=13&name=Jack"
+//        request.httpBody = jsonData
+//
+////        let task = URLSession.shared.dataTask(with: request) { (data, respons, error) in
+////            print(data)
+////            print(error)
+////            print(respons)
+////        }
+////        task.resume()
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            print(response)
+//            guard let data = data, error == nil else {
+//                print(error?.localizedDescription ?? "No data")
+//                return
+//            }
+////            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+////            if let responseJSON = responseJSON as? [String: Any] {
+////                print(responseJSON)
+////            }
+//        }
+//        task.resume()
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            print("error    =",error)
+//            guard let data = data, error == nil else {                                                 // check for fundamental networking error
+//                print("enterHere")
+//                print("error=\(error)")
+//                return
+//            }
+//            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
+//                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+//                print("response = \(response)")
+//            }
+//
+//            let responseString = String(data: data, encoding: .utf8)
+//            print("responseString = \(responseString)")
+//        }
+//        task.resume()
     }
 }
