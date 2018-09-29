@@ -13,7 +13,6 @@ app.config["MONGO_URI"] = "mongodb://mongo:27017/my-database"
 mongo = PyMongo(app)
 
 # Images
-import os 
 images = json.loads(open("data/inital_images.json").read())
 
 user_fields = api.model('User', {
@@ -228,7 +227,8 @@ class PostEndorsement(Resource):
                                                   {"$set": {"posts": posts}})
         return "Success"
 
-    @api.doc(description="Deletes a user's post")
+    @api.doc(description="Deletes a user's endorsement")
+    @api.expect(post_endorsement_fields, validate=True)
     def delete(self, user_id, post_id):
         json = request.get_json()
         endorse_id = json['user_id']
@@ -294,10 +294,29 @@ class PostDislike(Resource):
                                                   {"$set": {"posts": posts}})
         return "Success"
 
+
 class Users(Resource):
-    @api.doc(description="For testing. Gets all users")
+    @api.doc(description="For testing. Gets all users", params={'user_ids': 'Can be blank to retrieve all users. A list of user ids to retrive, formated like ?user_ids=[1, 2, ...]'})
     def get(self):
-        return json.loads(json_util.dumps(list(mongo.db.users.find())))
+        user_ids = request.args.get('user_ids', [])
+        if not user_ids:
+            return json.loads(json_util.dumps(list(mongo.db.users.find())))
+        try:
+            user_ids = eval(user_ids)
+        except ValueError:
+            return "User ids are not formatted in a list properly", 400
+        
+        users = []
+        for uid in user_ids:
+            user = mongo.db.users.find_one({"id": uid})
+            if not user:
+                return f"User with id {uid} not found", 404
+            users.append(user)
+
+        return json.loads(json_util.dumps(users))
+
+
+
 
 
 class UserFeed(Resource):
