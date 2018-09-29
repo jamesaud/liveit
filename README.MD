@@ -6,7 +6,7 @@ Checkout other branches for the code.
 
 ### James branch
 
-has the backend code written in Flask, with Swagger and Docker for deployments
+has the backend REST API code written in Flask, with Swagger and Docker for deployments
 
 ### Swift branch
 
