@@ -15,3 +15,7 @@ has the IOS application code
 ### UI Prototypes branch
 
 has the UI prototyping assets 
+
+### Web Branch
+
+Landing page website
