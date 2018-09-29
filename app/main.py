@@ -265,10 +265,10 @@ class PostDislike(Resource):
         # Add endorsement
         dislikes = post["dislikes"]
 
-        if endorse_id in dislikes:
+        if dislike_id in dislikes:
             return {"error": "Already disliked"}, 400
 
-        dislikes.append(json['user_id'])
+        dislikes.append(dislike_id)
 
         res = mongo.db.users.find_one_and_update({"id": user_id}, 
                                                   {"$set": {"posts": posts}})
