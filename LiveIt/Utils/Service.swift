@@ -61,6 +61,7 @@ class ServiceClass: NSObject {
                     guard let id = dict["id"] as? String else { return}
                     let user = User(uid: id, dictionary: dict)
                     self.users.append(user)
+                    self.fetchPosts()
                 }
             }
         }
@@ -81,6 +82,11 @@ class ServiceClass: NSObject {
         for ii in users {
             ii.fetchTheHabbites()
             print(ii.habits?.count)
+        }
+    }
+    func fetchPosts() {
+        for user in users {
+            print(user.id)
         }
     }
 }

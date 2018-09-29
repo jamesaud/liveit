@@ -21,6 +21,20 @@ class NewOneFeed: UICollectionViewController {
         collectionView?.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
         collectionView?.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
+    @objc func handleExpandView() {
+        UIView.animate(withDuration: 0.5) {
+            self.blackViewRightConstraint?.constant = 100
+        }
+    }
+    var blackViewRightConstraint:NSLayoutConstraint?
+    func createSidMenu() {
+        let blackView = UIView()
+        view.addSubview(blackView)
+        blackView.anchor(top: view.topAnchor, left: nil, right: nil, bottom: view.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 49, width: 100, height: 0)
+        blackViewRightConstraint = blackView.rightAnchor.constraint(equalTo: view.leftAnchor)
+        blackViewRightConstraint?.isActive = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         fetchUserHabbites()
     }

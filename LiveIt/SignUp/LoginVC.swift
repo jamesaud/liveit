@@ -26,24 +26,26 @@ class LoginVC: UIViewController {
     
     let signupButton: UIButton = {
         let btn = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "You alrady hava an account...", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
-        attributedTitle.append(NSMutableAttributedString(string: "Login", attributes: [NSAttributedStringKey.foregroundColor : UIColor.blue]))
+        let attributedTitle = NSMutableAttributedString(string: "You do'nt hava an account...  ", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)])
+        attributedTitle.append(NSMutableAttributedString(string: "Sign up", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0),NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 19)]))
         btn.setAttributedTitle(attributedTitle, for: .normal)
-        btn.backgroundColor = .brown
         btn.addTarget(self, action: #selector(hanldeAlreadyHaveAccount), for: .touchUpInside)
+        
         return btn
     }()
     let loginButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Login", for: .normal)
-        btn.backgroundColor = .brown
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+        btn.setAttributedTitle(NSMutableAttributedString(string: "Sign up", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 18)]), for: .normal)
+        btn.backgroundColor = UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0)
         btn.addTarget(self, action: #selector(hanldeLogin), for: .touchUpInside)
         return btn
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
     }
     func setupViews() {
         view.addSubview(email)

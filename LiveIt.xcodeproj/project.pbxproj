@@ -22,6 +22,7 @@
 		5224125B215D454E002F54DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5224125A215D454E002F54DF /* CoreLocation.framework */; };
 		5224125D215D4800002F54DF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125C215D4800002F54DF /* Service.swift */; };
 		52241260215D49DF002F54DF /* Hobbie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224125F215D49DF002F54DF /* Hobbie.swift */; };
+		524D8F3D215F76F600B83FCC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D8F3C215F76F600B83FCC /* PostCell.swift */; };
 		5263597C215E00A50092F818 /* TheRootBarButtonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263597B215E00A50092F818 /* TheRootBarButtonController.swift */; };
 		5263597E215E07E00092F818 /* NewOneIWantToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5263597D215E07E00092F818 /* NewOneIWantToVC.swift */; };
 		52635981215E084B0092F818 /* NewOneFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52635980215E084B0092F818 /* NewOneFeed.swift */; };
@@ -53,6 +54,7 @@
 		5224125A215D454E002F54DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		5224125C215D4800002F54DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		5224125F215D49DF002F54DF /* Hobbie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hobbie.swift; sourceTree = "<group>"; };
+		524D8F3C215F76F600B83FCC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		5263597B215E00A50092F818 /* TheRootBarButtonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRootBarButtonController.swift; sourceTree = "<group>"; };
 		5263597D215E07E00092F818 /* NewOneIWantToVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneIWantToVC.swift; sourceTree = "<group>"; };
 		52635980215E084B0092F818 /* NewOneFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOneFeed.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				52635989215E35E80092F818 /* CustomCollectionViewCell.swift */,
+				524D8F3C215F76F600B83FCC /* PostCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				5224125D215D4800002F54DF /* Service.swift in Sources */,
 				5263597E215E07E00092F818 /* NewOneIWantToVC.swift in Sources */,
 				5263598E215E4C9E0092F818 /* PostSetting.swift in Sources */,
+				524D8F3D215F76F600B83FCC /* PostCell.swift in Sources */,
 				52241254215D3AF8002F54DF /* IWantToVC.swift in Sources */,
 				5224124F215D32AD002F54DF /* LoginVC.swift in Sources */,
 			);

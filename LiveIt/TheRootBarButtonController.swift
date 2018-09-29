@@ -15,7 +15,13 @@ class TheRootBarButtonController: UITabBarController {
     // check User Status
 //    var login = true
     var service: ServiceClass?
+    var blackViewRightConstraint:NSLayoutConstraint?
     let locationMangere = CLLocationManager()
+    let blackView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red:0.99, green:0.87, blue:0.80, alpha:1.0)
+        return view
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         service = ServiceClass()
@@ -24,12 +30,99 @@ class TheRootBarButtonController: UITabBarController {
         view.backgroundColor = .white
         locationMangere.requestWhenInUseAuthorization()
         locationMangere.startUpdatingLocation()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menue", style: .plain, target: self, action: #selector(handleExpandView))
+        view.addSubview(blackView)
+        
+        blackView.anchor(top: view.topAnchor, left: nil, right: nil, bottom: view.bottomAnchor, paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 49, width: 350, height: 0)
+        blackViewRightConstraint = blackView.rightAnchor.constraint(equalTo: view.leftAnchor)
+        blackViewRightConstraint?.isActive = true
+        
+    }
+    var expand = false
+    @objc func handleExpandView() {
+        if expand == false {
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
+                self.blackViewRightConstraint?.constant = 300
+            }) { (complete) in
+            }
+            expand = true
+        }else {
+            expand = false
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
+                self.blackViewRightConstraint?.constant = 0
+            }) { (complete) in
+            }
+        }
+        
+    }
+    let userTitleLab : UILabel = {
+        let lab = UILabel()
+        lab.text = "Hello "
+        lab.textAlignment = .center
+        return lab
+    }()
+    let userImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.backgroundColor = .red
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
+    let progressBar: UIProgressView = {
+        let pv = UIProgressView()
+        return pv
+    }()
+    let pointsLab: UILabel = {
+        let lab = UILabel()
+        lab.textAlignment = .center
+        lab.text = "\(853) / \(1000) points" as String
+        lab.textColor = UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0)
+        return lab
+    }()
+    func setupBlackViewContent() {
+        blackView.addSubview(userTitleLab)
+        userTitleLab.anchor(top: blackView.topAnchor, left: nil, right: nil, bottom: nil, paddingTop: 80, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 280, height: 44)
+        userTitleLab.centerXAnchor.constraint(equalTo: blackView.centerXAnchor).isActive = true
+        
+        let att = NSMutableAttributedString(string: "welcom ", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red:0.68, green:0.70, blue:0.72, alpha:1.0)])
+        if let user = user {
+            att.append(NSAttributedString(string: "\(user.name)", attributes: [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 18),NSAttributedStringKey.foregroundColor: UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0)]))
+            userTitleLab.attributedText = att
+            userImageView.loadImage(urlString: user.imageURL)
+        }
+        blackView.addSubview(userImageView)
+        userImageView.anchor(top: userTitleLab.bottomAnchor, left: nil, right: nil, bottom: nil, paddingTop: 8, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 100, height: 100)
+        userImageView.centerXAnchor.constraint(equalTo: blackView.centerXAnchor).isActive = true
+        userImageView.layer.cornerRadius = 50
+        userImageView.layer.borderColor = UIColor.red.cgColor
+        userImageView.layer.borderWidth = 1
+        
+        blackView.addSubview(progressBar)
+        progressBar.anchor(top: userImageView.bottomAnchor, left: nil, right: nil, bottom: nil, paddingTop: 40, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 180, height: 5)
+        progressBar.centerXAnchor.constraint(equalTo: userImageView.centerXAnchor).isActive = true
+        
+        progressBar.progressTintColor = UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0)
+//        progressBar.progressTintColor =
+        let ratio: Float = 800.0 / 1000.0
+        progressBar.progress = ratio
+        
+        blackView.addSubview(pointsLab)
+        pointsLab.anchor(top: progressBar.bottomAnchor, left: nil, right: nil, bottom: nil, paddingTop: 10, paddingLeft: 0, paddingRight: 0, paddingBottom: 0, width: 150, height: 44)
+        pointsLab.centerXAnchor.constraint(equalTo: userImageView.centerXAnchor).isActive = true
+        
+        
+        // label name
+        
+        // image
+        
+        // 
     }
     var userID: String?
     override func viewWillAppear(_ animated: Bool) {
         checkUserStatus()
     }
     func checkUserStatus() {
+//        UserDefaults.standard.removeObject(forKey: "USERID")
         if UserDefaults.standard.string(forKey: "USERID") == nil{
             let signupVC = SignupVC()
             signupVC.theRootTBVC = self
@@ -54,6 +147,7 @@ class TheRootBarButtonController: UITabBarController {
                 self.user = User(uid: id, dictionary: value)
                 print(self.user?.name)
                 self.setupViewControllers()
+                self.setupBlackViewContent()
                 print(value)
             }
         }

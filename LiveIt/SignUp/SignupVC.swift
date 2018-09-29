@@ -33,17 +33,19 @@ class SignupVC: UIViewController {
     }()
     let signupButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Sign", for: .normal)
-        btn.backgroundColor = .brown
+        btn.layer.cornerRadius = 10
+        btn.layer.masksToBounds = true
+        btn.setAttributedTitle(NSMutableAttributedString(string: "Sign up", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 18)]), for: .normal)
+        btn.backgroundColor = UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0)
         btn.addTarget(self, action: #selector(hanldeSignUp), for: .touchUpInside)
         return btn
     }()
     let loginButton: UIButton = {
         let btn = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "You alrady hava an account...", attributes: [NSAttributedStringKey.foregroundColor : UIColor.lightGray])
-        attributedTitle.append(NSMutableAttributedString(string: "Login", attributes: [NSAttributedStringKey.foregroundColor : UIColor.blue]))
+
+        let attributedTitle = NSMutableAttributedString(string: "You alrady hava an account...  ", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)])
+        attributedTitle.append(NSMutableAttributedString(string: "Login", attributes: [NSAttributedStringKey.foregroundColor : UIColor(red:0.95, green:0.31, blue:0.00, alpha:1.0),NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 19)]))
         btn.setAttributedTitle(attributedTitle, for: .normal)
-        btn.backgroundColor = .brown
         btn.addTarget(self, action: #selector(hanldeAlreadyHaveAccount), for: .touchUpInside)
         return btn
     }()
@@ -51,6 +53,7 @@ class SignupVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
 //        setupURLRequest()
+        view.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
         setupViews()
     }
     func setupViews() {
@@ -94,8 +97,6 @@ class SignupVC: UIViewController {
         
         print("hanldeSignUp")
         
-        
-        
     }
     func setupURLRequest (dict:[String:Any]) {
         Alamofire.request("http://178.128.158.129/user", method: .post, parameters: dict, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
@@ -111,80 +112,5 @@ class SignupVC: UIViewController {
                 print(value)
             }
         }
-//        let jsonData = try! JSONSerialization.data(withJSONObject: dict)
-//        let convertedString = String(data: jsonData, encoding:String.Encoding.utf8)
-//
-//        print(convertedString)
-//
-//        // create post request
-//        let url = URL(string: "http://178.128.158.129/user")!
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        // insert json data to the request
-//        request.httpBody = jsonData
-//
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//            print(response)
-//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            if let responseJSON = responseJSON as? [String: Any] {
-//                print(responseJSON)
-//            }
-//        }
-//
-//        task.resume()
-
-        
-//
-//        let jsonData = try? JSONSerialization.data(withJSONObject: dict)
-//        let json = try! JSONSerialization.jsonObject(with: jsonData!, options: .allowFragments)
-//        let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue)
-//        print(jsonString)
-//
-//
-//        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//
-//        request.httpMethod = "POST"
-////        let postString = "id=13&name=Jack"
-//        request.httpBody = jsonData
-//
-////        let task = URLSession.shared.dataTask(with: request) { (data, respons, error) in
-////            print(data)
-////            print(error)
-////            print(respons)
-////        }
-////        task.resume()
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            print(response)
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-////            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-////            if let responseJSON = responseJSON as? [String: Any] {
-////                print(responseJSON)
-////            }
-//        }
-//        task.resume()
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            print("error    =",error)
-//            guard let data = data, error == nil else {                                                 // check for fundamental networking error
-//                print("enterHere")
-//                print("error=\(error)")
-//                return
-//            }
-//            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-//                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-//                print("response = \(response)")
-//            }
-//
-//            let responseString = String(data: data, encoding: .utf8)
-//            print("responseString = \(responseString)")
-//        }
-//        task.resume()
     }
 }
